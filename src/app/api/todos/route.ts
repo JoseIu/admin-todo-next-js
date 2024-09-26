@@ -1,0 +1,33 @@
+import { createTodoSchema } from '@/dtos/createTodoSchema';
+import prisma from '@/lib/prisma';
+import responseCliente from '@/utils/responseClient';
+import { type NextRequest } from 'next/server';
+
+export const GET = async (request: NextRequest) => {
+  const { searchParams } = request.nextUrl;
+
+  const take = Number(searchParams.get('take') ?? 10);
+  const skip = Number(searchParams.get('skip') ?? 0);
+
+  const todos = await prisma.todo.findMany({
+    take: take,
+    skip: skip,
+  });
+
+  return responseCliente(200, todos, 'Todos fetched successfully');
+};
+
+export const POST = async (request: Request) => {
+  const body = await request.json();
+
+  const isValidDTO = createTodoSchema.safeParse(body);
+  const messageError = isValidDTO.error?.errors.map((error) => error.message).join(', ');
+
+  if (!isValidDTO.success) return responseCliente(400, null, messageError!);
+
+  const { description, completed } = isValidDTO.data;
+
+  const todo = await prisma.todo.create({ data: { description, completed } });
+
+  return responseCliente(200, todo, 'Todo created successfully');
+};
