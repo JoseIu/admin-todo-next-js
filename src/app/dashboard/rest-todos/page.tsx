@@ -1,4 +1,4 @@
-import { Header } from '@/components';
+import { Header, NewTodo } from '@/components';
 import { TodosGrid } from '@/components/todos/todos-grid/TodosGrid';
 import prisma from '@/lib/prisma';
 
@@ -7,6 +7,7 @@ const RestTodosPage = async () => {
   return (
     <section>
       <Header />
+      <NewTodo />
       <TodosGrid todos={todos} />
     </section>
   );
