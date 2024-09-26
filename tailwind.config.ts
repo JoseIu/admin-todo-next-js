@@ -17,6 +17,7 @@ const config: Config = {
         textGray: '#7F7F7F',
         backgroundFocus: '#24262C',
         todoDone: '#FF7979',
+        btnColor: '#4B69FF',
       },
     },
   },
