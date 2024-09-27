@@ -31,3 +31,16 @@ export const POST = async (request: Request) => {
 
   return responseCliente(200, todo, 'Todo created successfully');
 };
+
+export const DELETE = async () => {
+  try {
+    const todosDeleted = await prisma.todo.deleteMany({ where: { completed: true } });
+
+    console.log(todosDeleted);
+
+    return responseCliente(200, null, 'Todos completed deleted successfully');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    return responseCliente(500, null, 'Internal server error');
+  }
+};
