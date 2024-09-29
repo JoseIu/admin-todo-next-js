@@ -1,14 +1,9 @@
-'use client';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 
 export const Header = () => {
-  const pathMenu = usePathname();
   return (
     <header className="w-full p-4 flex items-center justify-between bg-blueSemiDark">
-      <h2 className="text-2xl capitalize">{pathMenu.slice(1)}</h2>
-
-      <input className="bg-blueDark p-2 rounded-md" type="search" name="search" id="search" />
+      <h2 className="text-2xl capitalize">Dashboard</h2>
 
       <div className="flex items-center gap-2">
         <span>Vincent</span>
