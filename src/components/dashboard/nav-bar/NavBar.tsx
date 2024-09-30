@@ -1,5 +1,11 @@
 import { MenuPath } from '@/interfaces/MenuPath.Interface';
-import { IoCheckboxOutline, IoHomeOutline, IoListOutline } from 'react-icons/io5';
+import {
+  IoBasketOutline,
+  IoCheckboxOutline,
+  IoCodeWorkingOutline,
+  IoHomeOutline,
+  IoListOutline,
+} from 'react-icons/io5';
 import { NavBarItem } from '../nav-bar-item/NavBarItem';
 
 const menuPaths: MenuPath[] = [
@@ -17,6 +23,16 @@ const menuPaths: MenuPath[] = [
     path: '/dashboard/server-todos',
     icon: <IoListOutline size={25} />,
     title: 'Server Actions',
+  },
+  {
+    path: '/dashboard/cookies',
+    icon: <IoCodeWorkingOutline size={25} />,
+    title: 'Cookies',
+  },
+  {
+    path: '/dashboard/products',
+    icon: <IoBasketOutline size={25} />,
+    title: 'Products',
   },
 ];
 
