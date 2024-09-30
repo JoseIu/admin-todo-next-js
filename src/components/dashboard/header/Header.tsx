@@ -1,9 +1,30 @@
+import { cookies } from 'next/headers';
 import Image from 'next/image';
+import Link from 'next/link';
+import { IoCartOutline } from 'react-icons/io5';
 
 export const Header = () => {
+  const cookieStore = cookies();
+  const cart = JSON.parse(cookieStore.get('cart')?.value ?? '{}');
+
+  const getTotalCount = () => {
+    let items = 0;
+
+    Object.values(cart).forEach((value) => {
+      items += value as number;
+    });
+    return items;
+  };
+
   return (
     <header className="w-full p-4 flex items-center justify-between bg-blueSemiDark">
-      <h2 className="text-2xl capitalize">Dashboard</h2>
+      <div className="flex items-center gap-4">
+        <h2 className="text-2xl capitalize">Dashboard</h2>
+        <Link href="/dashboard/cart" className="flex items-center gap-2 px-4 py-2 bg-blueDark rounded-lg">
+          <span className="text-btnColor font-semibold">{getTotalCount()}</span>
+          <IoCartOutline size={25} />
+        </Link>
+      </div>
 
       <div className="flex items-center gap-2">
         <span>Vincent</span>
