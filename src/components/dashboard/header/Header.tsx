@@ -1,9 +1,13 @@
+import { auth } from '@/auth';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoCartOutline } from 'react-icons/io5';
 
-export const Header = () => {
+export const Header = async () => {
+  const session = await auth();
+  const userName = session?.user?.name ?? 'No name';
+  const userImage = session?.user?.image ?? '/images/avatar.jpg';
   const cookieStore = cookies();
   const cart = JSON.parse(cookieStore.get('cart')?.value ?? '{}');
 
@@ -27,10 +31,10 @@ export const Header = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <span>Vincent</span>
+        <span>{userName}</span>
 
         <Image
-          src="/images/avatar.jpg"
+          src={userImage}
           alt="user"
           height={40}
           width={40}
