@@ -5,7 +5,9 @@ import {
   IoCodeWorkingOutline,
   IoHomeOutline,
   IoListOutline,
+  IoPersonOutline,
 } from 'react-icons/io5';
+import { LogoutButton } from '../logout-btn/LogoutButton';
 import { NavBarItem } from '../nav-bar-item/NavBarItem';
 
 const menuPaths: MenuPath[] = [
@@ -34,6 +36,11 @@ const menuPaths: MenuPath[] = [
     icon: <IoBasketOutline size={25} />,
     title: 'Products',
   },
+  {
+    path: '/dashboard/profile',
+    icon: <IoPersonOutline size={25} />,
+    title: 'Profile',
+  },
 ];
 
 export const NavBar = () => {
@@ -48,6 +55,8 @@ export const NavBar = () => {
           ))}
         </ul>
       </nav>
+
+      <LogoutButton />
     </aside>
   );
 };
