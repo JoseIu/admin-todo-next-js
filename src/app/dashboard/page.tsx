@@ -19,6 +19,8 @@ const DashboardPage = async () => {
           <span>image: {session.user?.image}</span>
           <span>email: {session.user?.email}</span>
           <span>id: {session.user?.id}</span>
+          <br />
+          {JSON.stringify(session)}
         </div>
       </WidgetItem>
     </section>
